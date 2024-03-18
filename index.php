@@ -71,13 +71,13 @@ ini_set('display_errors', 1);
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-info bg-gradient">
 
     <div class="container py-5">
         
         <h1 class="mb-4">PHP HOTEL</h1>
 
-        <table class="table table-bordered border-black">
+        <table class="table table-bordered border-black shadow">
             <thead class="table-dark">
                 <tr>
                     <?php 
@@ -103,22 +103,26 @@ ini_set('display_errors', 1);
                 ?>
             </tbody>
         </table>
+        
+        <hr class="mb-3">
 
-        <form method="GET" class="mb-3">
+        <form method="GET" class="mb-3 bg-dark text-white w-25 p-4 rounded-2">
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="parking" name="parking" value="true">
                 <label class="form-check-label" for="parking">Parking</label>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group form-check ps-0 mb-3">
                 <label for="vote">Hotel Stars:</label>
-                <input type="number" class="form-control" id="vote" name="vote" min="1" max="5">
+                <input type="number" class="form-control w-25" id="vote" name="vote" min="1" max="5">
             </div>
             <button type="submit" class="btn btn-primary">Apply Filter</button>
         </form>
+
+        <hr class="mb-3">
         
         <h1 class="mb-4">FILTERED HOTELS</h1>
 
-        <table class="table table-bordered border-black">
+        <table class="table table-bordered border-black shadow">
             <thead class="table-dark">
                 <tr>
                 <th scope="col">Name</th>

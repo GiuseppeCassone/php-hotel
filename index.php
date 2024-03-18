@@ -55,23 +55,32 @@
 
     <h1>PHP HOTEL</h1>
 
-    <ul>
-        <?php
-        
-        foreach ($hotels as $hotel) {
-           echo "<li>
-                <ul>";
-
-                    foreach($hotel as $key => $value) {
-                        echo "<li> $key : " . $value . " </li>";
+    <table class="table">
+        <thead>
+            <tr>
+                <?php 
+                    foreach (array_keys($hotels[0]) as $key) {
+                        echo "<th scope='col'>
+                            $key
+                        </th>";
                     }
-            echo "
-                </ul>
-           </li>";
-        }
-
-        ?>
-    </ul>
+                ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+                foreach ($hotels as $hotel) {
+                    echo "<tr>";
+                            foreach ($hotel as $value) {
+                                echo "<td>
+                                    $value
+                                </td>";
+                            }
+                    echo "</tr>";
+                }
+            ?>
+        </tbody>
+    </table>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

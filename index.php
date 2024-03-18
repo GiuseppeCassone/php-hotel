@@ -75,7 +75,7 @@ ini_set('display_errors', 1);
 
     <div class="container py-5">
         
-        <h1 class="mb-4">PHP HOTEL</h1>
+        <h1 class="mb-4 text-center shadow bg-black text-white rounded-2">PHP HOTEL</h1>
 
         <table class="table table-bordered border-black shadow">
             <thead class="table-dark">
@@ -120,7 +120,7 @@ ini_set('display_errors', 1);
 
         <hr class="mb-3">
         
-        <h1 class="mb-4">FILTERED HOTELS</h1>
+        <h1 class="mb-4 text-center shadow bg-black text-white rounded-2">FILTERED HOTELS</h1>
 
         <table class="table table-bordered border-black shadow">
             <thead class="table-dark">

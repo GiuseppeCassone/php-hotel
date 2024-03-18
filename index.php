@@ -1,4 +1,8 @@
+
 <?php
+ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
     $hotels = [
 
@@ -42,15 +46,15 @@
 
     $filteredHotels = $hotels;
 
-    if($_GET['parking'] == 'true') {
+    if(isset($_GET['parking'])) {
         $filteredHotels = array_filter($filteredHotels, function ($hotel) {
             return $hotel['parking'];
         });
     }
     
-    $hotelStars = $_GET['vote'];
     
-    if($hotelStars) {
+    if(isset($_GET['vote'])) {
+        $hotelStars = $_GET['vote'];
         $filteredHotels = array_filter($filteredHotels, function ($hotel) use ($hotelStars) {
             return $hotel['vote'] >= $hotelStars;
         });

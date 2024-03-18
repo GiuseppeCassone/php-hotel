@@ -46,7 +46,11 @@
         });
     }
 
-    
+    if($_GET['vote']) {
+        $hotels = array_filter($hotels, function ($hotel) {
+            return $hotel['vote'] >= 3;
+        });
+    }
 
 ?>
 
@@ -96,6 +100,10 @@
             <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="parking" name="parking" value="true">
                 <label class="form-check-label" for="parking">Parking</label>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="vote" name="vote">
+                <label class="form-check-label" for="vote">3 or more stars</label>
             </div>
             <button type="submit" class="btn btn-primary">Apply Filter</button>
         </form>

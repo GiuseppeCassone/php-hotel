@@ -40,15 +40,19 @@
 
     ];
 
+    $filteredHotels = $hotels;
+
     if($_GET['parking'] == 'true') {
-        $hotels = array_filter($hotels, function ($hotel) {
+        $filteredHotels = array_filter($filteredHotels, function ($hotel) {
             return $hotel['parking'];
         });
     }
-
-    if($_GET['vote']) {
-        $hotels = array_filter($hotels, function ($hotel) {
-            return $hotel['vote'] >= 3;
+    
+    $hotelStars = $_GET['vote'];
+    
+    if($hotelStars) {
+        $filteredHotels = array_filter($filteredHotels, function ($hotel) use ($hotelStars) {
+            return $hotel['vote'] >= $hotelStars;
         });
     }
 
@@ -102,11 +106,39 @@
                 <label class="form-check-label" for="parking">Parking</label>
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="vote" name="vote">
-                <label class="form-check-label" for="vote">3 or more stars</label>
+                <label for="vote">Hotel Stars:</label>
+                <input type="number" class="form-control" id="vote" name="vote" min="1" max="5">
             </div>
             <button type="submit" class="btn btn-primary">Apply Filter</button>
         </form>
+        
+        <h1 class="mb-4">FILTERED HOTELS</h1>
+
+        <table class="table table-bordered border-black">
+            <thead class="table-dark">
+                <tr>
+                <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Parking</th>
+                    <th scope="col">Vote</th>
+                    <th scope="col">Distance to the center</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    foreach ($filteredHotels as $hotel) {
+                        echo "<tr>";
+                                foreach ($hotel as $value) {
+                                    echo "<td>
+                                        $value
+                                    </td>";
+                                }
+                        echo "</tr>";
+                    }
+                ?>
+            </tbody>
+        </table>
+
     </div>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

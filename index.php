@@ -40,6 +40,14 @@
 
     ];
 
+    if($_GET['parking'] == 'true') {
+        $hotels = array_filter($hotels, function ($hotel) {
+            return $hotel['parking'];
+        });
+    }
+
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -53,34 +61,45 @@
 </head>
 <body>
 
-    <h1>PHP HOTEL</h1>
+    <div class="container py-5">
+        
+        <h1 class="mb-4">PHP HOTEL</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
+        <table class="table table-bordered border-black">
+            <thead class="table-dark">
+                <tr>
+                    <?php 
+                        foreach (array_keys($hotels[0]) as $key) {
+                            echo "<th scope='col'>
+                                $key
+                            </th>";
+                        }
+                    ?>
+                </tr>
+            </thead>
+            <tbody>
                 <?php 
-                    foreach (array_keys($hotels[0]) as $key) {
-                        echo "<th scope='col'>
-                            $key
-                        </th>";
+                    foreach ($hotels as $hotel) {
+                        echo "<tr>";
+                                foreach ($hotel as $value) {
+                                    echo "<td>
+                                        $value
+                                    </td>";
+                                }
+                        echo "</tr>";
                     }
                 ?>
-            </tr>
-        </thead>
-        <tbody>
-            <?php 
-                foreach ($hotels as $hotel) {
-                    echo "<tr>";
-                            foreach ($hotel as $value) {
-                                echo "<td>
-                                    $value
-                                </td>";
-                            }
-                    echo "</tr>";
-                }
-            ?>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
+        <form method="GET" class="mb-3">
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="parking" name="parking" value="true">
+                <label class="form-check-label" for="parking">Parking</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Apply Filter</button>
+        </form>
+    </div>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
